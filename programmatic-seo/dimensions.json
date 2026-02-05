@@ -1,0 +1,76 @@
+{
+  "scenarios": [
+    {"id": "late-work", "name": "上班迟到", "name_en": "Late for Work", "keywords": ["late to work excuse", "tardy excuse", "running late"], "context": "workplace"},
+    {"id": "late-school", "name": "上学迟到", "name_en": "Late for School", "keywords": ["late to school excuse", "tardy student", "missing class"], "context": "education"},
+    {"id": "late-meeting", "name": "开会迟到", "name_en": "Late for Meeting", "keywords": ["late to meeting", "delayed arrival", "meeting excuse"], "context": "professional"},
+    {"id": "sick-leave", "name": "请病假", "name_en": "Sick Leave", "keywords": ["sick day excuse", "call in sick", "illness excuse"], "context": "workplace"},
+    {"id": "mental-health-day", "name": "心理健康假", "name_en": "Mental Health Day", "keywords": ["mental health excuse", "stress leave", "burnout excuse"], "context": "wellness"},
+    {"id": "decline-party", "name": "拒绝派对邀请", "name_en": "Decline Party Invite", "keywords": ["skip party excuse", "decline invitation", "party excuse"], "context": "social"},
+    {"id": "decline-dinner", "name": "拒绝晚餐邀请", "name_en": "Decline Dinner Invite", "keywords": ["skip dinner excuse", "decline dinner", "dinner excuse"], "context": "social"},
+    {"id": "decline-wedding", "name": "拒绝婚礼邀请", "name_en": "Decline Wedding", "keywords": ["skip wedding excuse", "wedding decline", "ceremony excuse"], "context": "social"},
+    {"id": "forget-birthday", "name": "忘记生日", "name_en": "Forgot Birthday", "keywords": ["forgot birthday excuse", "missed birthday", "birthday apology"], "context": "personal"},
+    {"id": "forget-anniversary", "name": "忘记纪念日", "name_en": "Forgot Anniversary", "keywords": ["forgot anniversary", "missed anniversary", "anniversary apology"], "context": "relationship"},
+    {"id": "miss-deadline", "name": "错过截止日期", "name_en": "Missed Deadline", "keywords": ["deadline excuse", "late submission", "missed due date"], "context": "professional"},
+    {"id": "miss-meeting", "name": "错过会议", "name_en": "Missed Meeting", "keywords": ["no show excuse", "missed meeting", "absent from meeting"], "context": "professional"},
+    {"id": "skip-homework", "name": "没做作业", "name_en": "No Homework", "keywords": ["homework excuse", "assignment excuse", "no homework"], "context": "education"},
+    {"id": "skip-gym", "name": "跳过健身", "name_en": "Skip Gym", "keywords": ["gym excuse", "workout excuse", "skip exercise"], "context": "fitness"},
+    {"id": "cancel-date", "name": "取消约会", "name_en": "Cancel Date", "keywords": ["cancel date excuse", "date cancellation", "reschedule date"], "context": "dating"},
+    {"id": "leave-early", "name": "提前离开", "name_en": "Leave Early", "keywords": ["leave early excuse", "early departure", "leaving early"], "context": "workplace"},
+    {"id": "wfh", "name": "在家办公", "name_en": "Work From Home", "keywords": ["wfh excuse", "remote work excuse", "home office"], "context": "workplace"},
+    {"id": "avoid-call", "name": "不接电话", "name_en": "Avoid Phone Call", "keywords": ["missed call excuse", "phone excuse", "ignore call"], "context": "communication"},
+    {"id": "late-reply", "name": "回复晚了", "name_en": "Late Reply", "keywords": ["delayed response", "late email reply", "slow response"], "context": "communication"},
+    {"id": "no-overtime", "name": "不加班", "name_en": "No Overtime", "keywords": ["overtime excuse", "refuse overtime", "no extra hours"], "context": "workplace"}
+  ],
+  "recipients": [
+    {"id": "boss", "name": "老板", "name_en": "Boss", "relationship": "professional", "formality": "high"},
+    {"id": "manager", "name": "经理", "name_en": "Manager", "relationship": "professional", "formality": "high"},
+    {"id": "coworker", "name": "同事", "name_en": "Coworker", "relationship": "professional", "formality": "medium"},
+    {"id": "client", "name": "客户", "name_en": "Client", "relationship": "business", "formality": "high"},
+    {"id": "teacher", "name": "老师", "name_en": "Teacher", "relationship": "educational", "formality": "high"},
+    {"id": "professor", "name": "教授", "name_en": "Professor", "relationship": "educational", "formality": "high"},
+    {"id": "parent", "name": "父母", "name_en": "Parent", "relationship": "family", "formality": "low"},
+    {"id": "partner", "name": "伴侣", "name_en": "Partner", "relationship": "romantic", "formality": "low"},
+    {"id": "friend", "name": "朋友", "name_en": "Friend", "relationship": "social", "formality": "low"},
+    {"id": "landlord", "name": "房东", "name_en": "Landlord", "relationship": "business", "formality": "medium"},
+    {"id": "doctor", "name": "医生", "name_en": "Doctor", "relationship": "professional", "formality": "medium"},
+    {"id": "in-laws", "name": "公婆/岳父母", "name_en": "In-Laws", "relationship": "family", "formality": "medium"},
+    {"id": "ex", "name": "前任", "name_en": "Ex", "relationship": "past", "formality": "low"},
+    {"id": "neighbor", "name": "邻居", "name_en": "Neighbor", "relationship": "community", "formality": "medium"},
+    {"id": "hr", "name": "HR", "name_en": "HR Department", "relationship": "professional", "formality": "high"}
+  ],
+  "styles": [
+    {"id": "believable", "name": "可信的", "name_en": "Believable", "tone": "serious", "creativity": "low"},
+    {"id": "dramatic", "name": "戏剧性的", "name_en": "Dramatic", "tone": "urgent", "creativity": "medium"},
+    {"id": "funny", "name": "搞笑的", "name_en": "Funny", "tone": "humorous", "creativity": "high"},
+    {"id": "professional", "name": "专业的", "name_en": "Professional", "tone": "formal", "creativity": "low"},
+    {"id": "apologetic", "name": "道歉式的", "name_en": "Apologetic", "tone": "remorseful", "creativity": "low"},
+    {"id": "creative", "name": "创意的", "name_en": "Creative", "tone": "imaginative", "creativity": "high"},
+    {"id": "emergency", "name": "紧急的", "name_en": "Emergency", "tone": "urgent", "creativity": "medium"},
+    {"id": "casual", "name": "随意的", "name_en": "Casual", "tone": "relaxed", "creativity": "medium"}
+  ],
+  "industries": [
+    {"id": "tech", "name": "科技行业", "name_en": "Tech Industry", "common_excuses": ["server down", "deployment issue", "bug fixing"]},
+    {"id": "finance", "name": "金融行业", "name_en": "Finance", "common_excuses": ["market emergency", "audit preparation", "client meeting"]},
+    {"id": "healthcare", "name": "医疗行业", "name_en": "Healthcare", "common_excuses": ["patient emergency", "on-call duty", "medical conference"]},
+    {"id": "education", "name": "教育行业", "name_en": "Education", "common_excuses": ["grading papers", "parent conference", "curriculum planning"]},
+    {"id": "retail", "name": "零售行业", "name_en": "Retail", "common_excuses": ["inventory count", "supplier meeting", "store emergency"]},
+    {"id": "hospitality", "name": "餐饮酒店", "name_en": "Hospitality", "common_excuses": ["event catering", "VIP guest", "kitchen emergency"]},
+    {"id": "legal", "name": "法律行业", "name_en": "Legal", "common_excuses": ["court appearance", "client emergency", "document deadline"]},
+    {"id": "creative", "name": "创意行业", "name_en": "Creative", "common_excuses": ["client revision", "inspiration block", "portfolio deadline"]},
+    {"id": "startup", "name": "创业公司", "name_en": "Startup", "common_excuses": ["investor meeting", "product launch", "pivot planning"]},
+    {"id": "consulting", "name": "咨询行业", "name_en": "Consulting", "common_excuses": ["client site", "proposal deadline", "travel delay"]},
+    {"id": "remote", "name": "远程工作", "name_en": "Remote Work", "common_excuses": ["internet outage", "power failure", "timezone confusion"]},
+    {"id": "freelance", "name": "自由职业", "name_en": "Freelance", "common_excuses": ["multiple clients", "creative block", "equipment failure"]}
+  ],
+  "combinations": [
+    ["scenarios", "recipients", "styles"],
+    ["scenarios", "industries", "styles"],
+    ["scenarios", "recipients", "industries"]
+  ],
+  "estimated_pages": 19200,
+  "page_template": {
+    "title": "Best {style} Excuse for {scenario} to {recipient} | AI Excuse Generator",
+    "description": "Generate the perfect {style} excuse for {scenario}. AI-powered excuse generator for {recipient} in {industry}.",
+    "h1": "{style} Excuses for {scenario}"
+  }
+}
