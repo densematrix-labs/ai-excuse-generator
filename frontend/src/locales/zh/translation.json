@@ -1,87 +1,87 @@
 {
   "app": {
     "title": "AI 借口生成器",
-    "subtitle": "任何场景的完美借口",
-    "tagline": "不想上班？不想聚会？让 AI 帮你想个完美的借口！"
+    "tagline": "创意借口，新鲜出炉",
+    "description": "用 AI 为任何场景生成可信的借口。就像有个机智的朋友总知道该说什么。"
   },
-  "scenarios": {
-    "title": "你需要什么借口？",
-    "skip_work": "请假/翘班",
-    "avoid_party": "躲避聚会",
-    "late_arrival": "迟到解释",
-    "forgot_task": "忘记任务",
-    "cancel_plans": "取消约定",
-    "miss_meeting": "错过会议",
-    "custom": "自定义"
+  "nav": {
+    "home": "首页",
+    "pricing": "购买",
+    "language": "语言"
   },
-  "styles": {
-    "title": "借口风格",
-    "sincere": "真诚感人",
-    "professional": "专业得体",
-    "creative": "创意独特",
-    "dramatic": "夸张戏剧",
-    "absurd": "荒诞搞笑"
+  "categories": {
+    "title": "什么情况？",
+    "late": "迟到了",
+    "sick_leave": "请病假",
+    "decline": "拒绝邀请",
+    "forgot": "忘事了",
+    "deadline": "错过截止日期",
+    "meeting": "缺席会议",
+    "homework": "作业/任务",
+    "other": "其他"
   },
-  "form": {
-    "targetPerson": "对谁说？",
-    "targetPlaceholder": "例如：老板、朋友、妈妈",
-    "customScenario": "描述你的情况",
-    "customPlaceholder": "你需要什么借口？",
-    "urgency": "紧急程度",
+  "urgency": {
+    "title": "戏剧程度？",
+    "normal": "普通",
+    "normalDesc": "可信且合理",
+    "urgent": "紧急",
+    "urgentDesc": "略显戏剧但可信",
+    "extreme": "极端",
+    "extremeDesc": "疯狂又夸张！"
+  },
+  "generator": {
+    "contextPlaceholder": "添加更多背景信息（可选）...",
     "generate": "生成借口",
-    "generating": "正在为你创造完美借口..."
-  },
-  "result": {
-    "title": "你的完美借口",
+    "generating": "正在输入...",
     "copy": "复制",
     "copied": "已复制！",
-    "tryAnother": "换一个",
-    "freeTrialUsed": "已使用免费试用"
+    "noTokens": "借口用完了！购买更多继续使用。",
+    "buyMore": "获取更多借口",
+    "freeTrial": "免费试用",
+    "freeTrialUsed": "已使用免费试用",
+    "tokensRemaining": "剩余 {{count}} 次"
   },
-  "tokens": {
-    "remaining": "剩余次数",
-    "freeTrialAvailable": "1 次免费试用",
-    "buyMore": "购买更多"
+  "excuse": {
+    "tone": "语气",
+    "tip": "使用技巧"
   },
   "pricing": {
-    "title": "获取更多次数",
-    "subtitle": "永远不缺完美借口",
-    "starter": {
+    "title": "获取更多借口",
+    "subtitle": "永不缺少创意借口",
+    "pack10": {
       "name": "入门包",
-      "description": "3 次借口生成",
-      "price": "$2.99"
+      "excuses": "10 次借口",
+      "description": "适合偶尔需要的你"
     },
-    "regular": {
-      "name": "常规包",
-      "description": "10 次借口生成",
-      "popular": "最受欢迎",
-      "price": "$7.99"
+    "pack30": {
+      "name": "超值包",
+      "excuses": "30 次借口",
+      "description": "最划算的选择",
+      "popular": "最受欢迎"
     },
-    "pro": {
-      "name": "专业包",
-      "description": "30 次借口生成",
-      "price": "$19.99"
+    "unlimited": {
+      "name": "无限版",
+      "excuses": "无限次 / 月",
+      "description": "给借口达人的你"
     },
-    "buy": "立即购买"
+    "buy": "购买",
+    "secure": "通过 Creem 安全支付"
   },
-  "payment": {
-    "success": {
-      "title": "支付成功！",
-      "subtitle": "次数已添加到你的账户",
-      "tokensAdded": "次已添加",
-      "backToGenerator": "返回生成器"
-    }
-  },
-  "errors": {
-    "noTokens": "次数已用完，请购买更多以继续使用。",
-    "generation": "生成借口失败，请重试。",
-    "network": "网络错误，请检查你的连接。"
+  "success": {
+    "title": "支付成功！",
+    "message": "你的借口已准备就绪，开始生成吧！",
+    "tokensAdded": "已添加 {{count}} 次借口到你的账户",
+    "unlimitedActivated": "30 天无限借口已激活",
+    "backToHome": "开始生成"
   },
   "footer": {
-    "poweredBy": "由 AI 驱动",
-    "disclaimer": "生成的借口仅供娱乐使用。"
+    "tagline": "自 2025 年起生成借口",
+    "powered": "由 AI 驱动",
+    "disclaimer": "请合理使用。我们不对任何后果负责。"
   },
-  "language": {
-    "select": "语言"
+  "errors": {
+    "generic": "出了点问题，请重试。",
+    "network": "网络错误，请检查连接。",
+    "noTokens": "借口次数已用完，请购买更多。"
   }
 }

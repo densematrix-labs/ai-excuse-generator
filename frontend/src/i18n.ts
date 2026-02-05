@@ -1,14 +1,14 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
 
-import en from './locales/en/translation.json';
-import zh from './locales/zh/translation.json';
-import ja from './locales/ja/translation.json';
-import de from './locales/de/translation.json';
-import fr from './locales/fr/translation.json';
-import ko from './locales/ko/translation.json';
-import es from './locales/es/translation.json';
+import en from './locales/en/translation.json'
+import zh from './locales/zh/translation.json'
+import ja from './locales/ja/translation.json'
+import de from './locales/de/translation.json'
+import fr from './locales/fr/translation.json'
+import ko from './locales/ko/translation.json'
+import es from './locales/es/translation.json'
 
 const resources = {
   en: { translation: en },
@@ -18,7 +18,7 @@ const resources = {
   fr: { translation: fr },
   ko: { translation: ko },
   es: { translation: es },
-};
+}
 
 i18n
   .use(LanguageDetector)
@@ -30,12 +30,12 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['querystring', 'localStorage', 'navigator'],
+      order: ['querystring', 'navigator', 'localStorage'],
       caches: ['localStorage'],
     },
     react: {
       useSuspense: false,
     },
-  });
+  })
 
-export default i18n;
+export default i18n

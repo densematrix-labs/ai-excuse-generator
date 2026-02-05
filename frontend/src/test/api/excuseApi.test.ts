@@ -1,116 +1,162 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { generateExcuse, getTokenStatus, createCheckout } from '../../api/excuseApi';
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { excuseApi } from '../../api/excuseApi'
+
+// Mock fetch
+global.fetch = vi.fn()
+
+const mockFetch = global.fetch as ReturnType<typeof vi.fn>
 
 describe('excuseApi', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
-  });
+    mockFetch.mockClear()
+  })
 
-  describe('generateExcuse', () => {
-    it('sends correct request and returns excuse', async () => {
-      const mockResponse = {
-        excuse: 'Test excuse',
-        scenario: 'skip_work',
-        style: 'sincere',
-        remaining_tokens: 5,
-        is_free_trial: false,
-      };
-
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+  describe('generate', () => {
+    it('sends correct request', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve(mockResponse),
-      });
+        json: () => Promise.resolve({
+          excuses: [{ text: 'Test', tone: 'test', tip: 'test' }],
+          category: 'late',
+          urgency: 'normal',
+          tokens_remaining: 5,
+        }),
+      })
 
-      const result = await generateExcuse({
-        scenario: 'skip_work',
-        style: 'sincere',
-        urgency: 3,
-        device_id: 'test-device',
+      await excuseApi.generate({
+        category: 'late',
+        urgency: 'normal',
+        context: '',
         language: 'en',
-      });
+        device_id: 'test-device',
+      })
 
-      expect(result).toEqual(mockResponse);
-      expect(global.fetch).toHaveBeenCalledWith('/api/excuse', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: expect.any(String),
-      });
-    });
+      expect(mockFetch).toHaveBeenCalledWith(
+        '/api/generate',
+        expect.objectContaining({
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        })
+      )
+    })
 
-    it('throws error on failure', async () => {
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+    it('throws on error response', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: false,
         json: () => Promise.resolve({ detail: 'No tokens' }),
-      });
+      })
 
-      await expect(generateExcuse({
-        scenario: 'skip_work',
-        style: 'sincere',
-        urgency: 3,
-        device_id: 'test-device',
+      await expect(excuseApi.generate({
+        category: 'late',
+        urgency: 'normal',
+        context: '',
         language: 'en',
-      })).rejects.toThrow('No tokens');
-    });
-  });
+        device_id: 'test-device',
+      })).rejects.toThrow('No tokens')
+    })
+  })
 
   describe('getTokenStatus', () => {
-    it('returns token status', async () => {
-      const mockStatus = {
-        device_id: 'test-device',
-        total_tokens: 10,
-        used_tokens: 3,
-        remaining_tokens: 7,
-        free_trial_available: false,
-      };
-
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+    it('fetches token status', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve(mockStatus),
-      });
+        json: () => Promise.resolve({
+          device_id: 'test',
+          total_tokens: 10,
+          used_tokens: 0,
+          remaining_tokens: 10,
+          free_trial_used: false,
+          is_unlimited: false,
+        }),
+      })
 
-      const result = await getTokenStatus('test-device');
+      const result = await excuseApi.getTokenStatus('test-device')
 
-      expect(result).toEqual(mockStatus);
-      expect(global.fetch).toHaveBeenCalledWith('/api/tokens/test-device');
-    });
+      expect(mockFetch).toHaveBeenCalledWith('/api/tokens/test-device')
+      expect(result.total_tokens).toBe(10)
+    })
 
-    it('throws error on failure', async () => {
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+    it('throws on error', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: false,
-      });
+      })
 
-      await expect(getTokenStatus('test-device')).rejects.toThrow('Failed to get token status');
-    });
-  });
+      await expect(excuseApi.getTokenStatus('test')).rejects.toThrow()
+    })
+  })
+
+  describe('canGenerate', () => {
+    it('fetches can generate status', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({
+          can_generate: true,
+          free_trial_available: true,
+          tokens_remaining: 0,
+          is_unlimited: false,
+        }),
+      })
+
+      const result = await excuseApi.canGenerate('test-device')
+
+      expect(result.can_generate).toBe(true)
+    })
+  })
 
   describe('createCheckout', () => {
-    it('returns checkout URL', async () => {
-      const mockCheckout = {
-        checkout_url: 'https://checkout.example.com',
-        checkout_id: 'checkout_123',
-      };
-
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+    it('creates checkout session', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve(mockCheckout),
-      });
+        json: () => Promise.resolve({
+          checkout_url: 'https://checkout.test',
+          session_id: 'session-123',
+        }),
+      })
 
-      const result = await createCheckout('product_1', 'device_1');
+      const result = await excuseApi.createCheckout({
+        product_type: 'pack_10',
+        device_id: 'test-device',
+      })
 
-      expect(result).toEqual(mockCheckout);
-      expect(global.fetch).toHaveBeenCalledWith('/api/payment/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product_id: 'product_1', device_id: 'device_1' }),
-      });
-    });
+      expect(result.checkout_url).toBe('https://checkout.test')
+    })
 
-    it('throws error on failure', async () => {
-      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+    it('throws on error', async () => {
+      mockFetch.mockResolvedValueOnce({
         ok: false,
-      });
+        json: () => Promise.resolve({ detail: 'Invalid product' }),
+      })
 
-      await expect(createCheckout('product_1', 'device_1')).rejects.toThrow('Failed to create checkout');
-    });
-  });
-});
+      await expect(excuseApi.createCheckout({
+        product_type: 'pack_10',
+        device_id: 'test',
+      })).rejects.toThrow('Invalid product')
+    })
+  })
+
+  describe('getProducts', () => {
+    it('fetches products', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({
+          products: [
+            { id: 'pack_10', name: '10 Pack', price: 4.99 },
+          ],
+        }),
+      })
+
+      const result = await excuseApi.getProducts()
+
+      expect(result.products).toHaveLength(1)
+      expect(result.products[0].id).toBe('pack_10')
+    })
+
+    it('throws on error', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+      })
+
+      await expect(excuseApi.getProducts()).rejects.toThrow()
+    })
+  })
+})

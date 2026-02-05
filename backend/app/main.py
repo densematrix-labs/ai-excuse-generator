@@ -1,26 +1,30 @@
+"""Main FastAPI application."""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from app.database import init_db
-from app.routes import excuse_router, payment_router, token_router
+
+from app.config import get_settings
+from app.api import excuse_router, token_router, payment_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """Application lifespan handler."""
     # Startup
-    await init_db()
     yield
     # Shutdown
 
 
+settings = get_settings()
+
 app = FastAPI(
-    title="AI Excuse Generator",
-    description="Generate perfect excuses for any situation!",
+    title=settings.app_name,
+    description="Generate creative excuses for any situation using AI",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
-# CORS
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,21 +33,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routes
-app.include_router(excuse_router)
-app.include_router(payment_router)
-app.include_router(token_router)
+# Include routers
+app.include_router(excuse_router.router, prefix="/api", tags=["excuses"])
+app.include_router(token_router.router, prefix="/api", tags=["tokens"])
+app.include_router(payment_router.router, prefix="/api", tags=["payment"])
 
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "service": "ai-excuse-generator"}
+    """Health check endpoint."""
+    return {"status": "healthy", "service": settings.app_name}
 
 
 @app.get("/")
 async def root():
+    """Root endpoint."""
     return {
-        "name": "AI Excuse Generator",
+        "name": settings.app_name,
         "version": "1.0.0",
-        "docs": "/docs"
+        "status": "running",
     }

@@ -1,27 +1,23 @@
+"""Payment-related schemas."""
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any
-from datetime import datetime
+from typing import Optional, Literal
 
 
 class CheckoutRequest(BaseModel):
-    product_id: str
+    """Request to create a checkout session."""
+    product_type: Literal["pack_10", "pack_30", "unlimited"] = Field(..., description="Product to purchase")
     device_id: str = Field(..., min_length=10, max_length=100)
     success_url: Optional[str] = None
-    
+    cancel_url: Optional[str] = None
+
 
 class CheckoutResponse(BaseModel):
+    """Response with checkout URL."""
     checkout_url: str
-    checkout_id: str
-
-
-class TokenStatusResponse(BaseModel):
-    device_id: str
-    total_tokens: int
-    used_tokens: int
-    remaining_tokens: int
-    free_trial_available: bool
+    session_id: str
 
 
 class WebhookPayload(BaseModel):
+    """Creem webhook payload."""
     event_type: str
-    data: Dict[str, Any]
+    data: dict

@@ -1,39 +1,47 @@
+"""Excuse-related schemas."""
 from pydantic import BaseModel, Field
+from typing import List, Literal
 from enum import Enum
-from typing import Optional
 
 
-class Scenario(str, Enum):
-    SKIP_WORK = "skip_work"
-    AVOID_PARTY = "avoid_party"
-    LATE_ARRIVAL = "late_arrival"
-    FORGOT_TASK = "forgot_task"
-    CANCEL_PLANS = "cancel_plans"
-    MISS_MEETING = "miss_meeting"
-    CUSTOM = "custom"
+class ExcuseCategory(str, Enum):
+    """Available excuse categories."""
+    LATE = "late"                    # 迟到
+    SICK_LEAVE = "sick_leave"        # 请病假
+    DECLINE = "decline"              # 拒绝邀请
+    FORGOT = "forgot"                # 忘事
+    DEADLINE = "deadline"            # 错过截止日期
+    MEETING = "meeting"              # 缺席会议
+    HOMEWORK = "homework"            # 没完成作业
+    OTHER = "other"                  # 其他
 
 
-class Style(str, Enum):
-    SINCERE = "sincere"        # 真诚感人
-    PROFESSIONAL = "professional"  # 专业得体
-    CREATIVE = "creative"      # 创意独特
-    DRAMATIC = "dramatic"      # 夸张戏剧
-    ABSURD = "absurd"          # 荒诞搞笑
+class UrgencyLevel(str, Enum):
+    """Urgency/believability level."""
+    NORMAL = "normal"      # 常规借口，比较可信
+    URGENT = "urgent"      # 紧急借口，有点夸张
+    EXTREME = "extreme"    # 极端借口，非常戏剧化
 
 
 class ExcuseRequest(BaseModel):
-    scenario: Scenario
-    custom_scenario: Optional[str] = Field(None, max_length=200)
-    style: Style = Style.SINCERE
-    target_person: Optional[str] = Field(None, max_length=50)  # boss, friend, family, etc.
-    urgency: int = Field(default=3, ge=1, le=5)  # 1-5 urgency level
-    device_id: str = Field(..., min_length=10, max_length=100)
-    language: str = Field(default="en", pattern="^(en|zh|ja|de|fr|ko|es)$")
+    """Request body for generating excuses."""
+    category: ExcuseCategory = Field(..., description="The excuse category")
+    urgency: UrgencyLevel = Field(default=UrgencyLevel.NORMAL, description="Urgency level")
+    context: str = Field(default="", max_length=500, description="Additional context")
+    language: str = Field(default="en", description="Output language code")
+    device_id: str = Field(..., min_length=10, max_length=100, description="Device fingerprint")
+
+
+class Excuse(BaseModel):
+    """A single generated excuse."""
+    text: str = Field(..., description="The excuse text")
+    tone: str = Field(..., description="The tone of the excuse")
+    tip: str = Field(default="", description="Delivery tip")
 
 
 class ExcuseResponse(BaseModel):
-    excuse: str
-    scenario: str
-    style: str
-    remaining_tokens: int
-    is_free_trial: bool = False
+    """Response containing generated excuses."""
+    excuses: List[Excuse] = Field(..., description="List of generated excuses")
+    category: ExcuseCategory
+    urgency: UrgencyLevel
+    tokens_remaining: int = Field(default=-1, description="Remaining tokens, -1 if unlimited or unknown")

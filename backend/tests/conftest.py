@@ -1,45 +1,50 @@
+"""Test configuration and fixtures."""
 import pytest
-import pytest_asyncio
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from httpx import AsyncClient, ASGITransport
-from app.database import Base, get_db
+from fastapi.testclient import TestClient
+from unittest.mock import AsyncMock, patch
+
 from app.main import app
-
-# Test database
-TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
-
-test_engine = create_async_engine(TEST_DATABASE_URL, echo=False)
-TestSessionLocal = async_sessionmaker(
-    test_engine, class_=AsyncSession, expire_on_commit=False
-)
+from app.services.token_service import TokenService, get_token_service
+from app.services.excuse_service import ExcuseService
 
 
-@pytest_asyncio.fixture
-async def db_session():
-    async with test_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    
-    async with TestSessionLocal() as session:
-        yield session
-    
-    async with test_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-
-
-@pytest_asyncio.fixture
-async def client(db_session):
-    async def override_get_db():
-        yield db_session
-    
-    app.dependency_overrides[get_db] = override_get_db
-    
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as ac:
-        yield ac
-    
-    app.dependency_overrides.clear()
+@pytest.fixture
+def client():
+    """Create a test client."""
+    return TestClient(app)
 
 
 @pytest.fixture
 def test_device_id():
-    return "test-device-12345678"
+    """Return a valid test device ID."""
+    return "test_device_123456789"
+
+
+@pytest.fixture
+def token_service():
+    """Get a fresh token service instance."""
+    service = TokenService()
+    return service
+
+
+@pytest.fixture
+def mock_llm_response():
+    """Mock LLM response for excuse generation."""
+    return '''[
+        {"text": "Test excuse 1", "tone": "sincere", "tip": "Say it calmly"},
+        {"text": "Test excuse 2", "tone": "apologetic", "tip": "Look sorry"},
+        {"text": "Test excuse 3", "tone": "dramatic", "tip": "Add emotion"}
+    ]'''
+
+
+@pytest.fixture
+def reset_services():
+    """Reset singleton services after each test."""
+    import app.services.token_service as ts
+    import app.services.excuse_service as es
+    
+    ts._token_service = None
+    es._excuse_service = None
+    yield
+    ts._token_service = None
+    es._excuse_service = None

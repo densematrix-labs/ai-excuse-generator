@@ -1,87 +1,87 @@
 {
   "app": {
     "title": "Générateur d'Excuses IA",
-    "subtitle": "Des excuses parfaites pour toute situation",
-    "tagline": "Pas envie de travailler ? Éviter une fête ? Laissez l'IA créer l'excuse parfaite !"
+    "tagline": "Des excuses créatives, fraîchement tapées pour vous",
+    "description": "Générez des excuses crédibles pour toute situation grâce à l'IA. Comme un ami intelligent qui sait toujours quoi dire."
   },
-  "scenarios": {
-    "title": "Pour quoi avez-vous besoin d'une excuse ?",
-    "skip_work": "Sécher le travail",
-    "avoid_party": "Éviter une fête",
-    "late_arrival": "Expliquer un retard",
-    "forgot_task": "Tâche oubliée",
-    "cancel_plans": "Annuler des plans",
-    "miss_meeting": "Manquer une réunion",
-    "custom": "Personnalisé"
+  "nav": {
+    "home": "Accueil",
+    "pricing": "Tarifs",
+    "language": "Langue"
   },
-  "styles": {
-    "title": "Style d'excuse",
-    "sincere": "Sincère",
-    "professional": "Professionnel",
-    "creative": "Créatif",
-    "dramatic": "Dramatique",
-    "absurd": "Absurde"
+  "categories": {
+    "title": "Quelle est la situation ?",
+    "late": "En retard",
+    "sick_leave": "Congé maladie",
+    "decline": "Refuser une invitation",
+    "forgot": "Oublié quelque chose",
+    "deadline": "Délai manqué",
+    "meeting": "Réunion manquée",
+    "homework": "Devoirs/Travail",
+    "other": "Autre"
   },
-  "form": {
-    "targetPerson": "À qui le dites-vous ?",
-    "targetPlaceholder": "ex: Patron, Ami, Maman",
-    "customScenario": "Décrivez votre situation",
-    "customPlaceholder": "Pour quoi avez-vous besoin d'une excuse ?",
-    "urgency": "Niveau d'urgence",
-    "generate": "Générer une excuse",
-    "generating": "Création de votre excuse parfaite..."
+  "urgency": {
+    "title": "Niveau de dramatisation ?",
+    "normal": "Normal",
+    "normalDesc": "Crédible et raisonnable",
+    "urgent": "Urgent",
+    "urgentDesc": "Un peu dramatique mais plausible",
+    "extreme": "Extrême",
+    "extremeDesc": "Fou et théâtral !"
   },
-  "result": {
-    "title": "Votre excuse parfaite",
+  "generator": {
+    "contextPlaceholder": "Ajouter plus de contexte (optionnel)...",
+    "generate": "Générer des excuses",
+    "generating": "En train de taper...",
     "copy": "Copier",
     "copied": "Copié !",
-    "tryAnother": "Essayer une autre",
-    "freeTrialUsed": "Essai gratuit utilisé"
+    "noTokens": "Plus d'excuses ! Achetez-en plus pour continuer.",
+    "buyMore": "Obtenir plus d'excuses",
+    "freeTrial": "Essai gratuit",
+    "freeTrialUsed": "Essai gratuit utilisé",
+    "tokensRemaining": "{{count}} excuse(s) restante(s)"
   },
-  "tokens": {
-    "remaining": "Restant",
-    "freeTrialAvailable": "1 essai gratuit",
-    "buyMore": "En obtenir plus"
+  "excuse": {
+    "tone": "Ton",
+    "tip": "Conseil de pro"
   },
   "pricing": {
-    "title": "Obtenez plus d'excuses",
-    "subtitle": "Ne manquez jamais d'excuses parfaites",
-    "starter": {
-      "name": "Pack Débutant",
-      "description": "3 générations d'excuses",
-      "price": "2,99 $"
+    "title": "Obtenir plus d'excuses",
+    "subtitle": "Ne soyez plus jamais à court d'excuses créatives",
+    "pack10": {
+      "name": "Pack Démarrage",
+      "excuses": "10 Excuses",
+      "description": "Parfait pour les besoins occasionnels"
     },
-    "regular": {
-      "name": "Pack Standard",
-      "description": "10 générations d'excuses",
-      "popular": "Le plus populaire",
-      "price": "7,99 $"
+    "pack30": {
+      "name": "Pack Valeur",
+      "excuses": "30 Excuses",
+      "description": "Meilleur rapport qualité-prix",
+      "popular": "Le plus populaire"
     },
-    "pro": {
-      "name": "Pack Pro",
-      "description": "30 générations d'excuses",
-      "price": "19,99 $"
+    "unlimited": {
+      "name": "Illimité",
+      "excuses": "Illimité / mois",
+      "description": "Pour l'inventeur d'excuses chronique"
     },
-    "buy": "Acheter"
+    "buy": "Acheter",
+    "secure": "Paiement sécurisé via Creem"
   },
-  "payment": {
-    "success": {
-      "title": "Paiement réussi !",
-      "subtitle": "Vos jetons ont été ajoutés",
-      "tokensAdded": "jetons ajoutés",
-      "backToGenerator": "Retour au générateur"
-    }
-  },
-  "errors": {
-    "noTokens": "Plus de jetons. Veuillez en acheter pour continuer.",
-    "generation": "Échec de la génération. Veuillez réessayer.",
-    "network": "Erreur réseau. Vérifiez votre connexion."
+  "success": {
+    "title": "Paiement réussi !",
+    "message": "Vos excuses sont prêtes. Commencez à générer !",
+    "tokensAdded": "{{count}} excuses ajoutées à votre compte",
+    "unlimitedActivated": "Excuses illimitées activées pour 30 jours",
+    "backToHome": "Commencer à générer"
   },
   "footer": {
-    "poweredBy": "Propulsé par l'IA",
-    "disclaimer": "Les excuses générées sont uniquement à des fins de divertissement."
+    "tagline": "Génère des excuses depuis 2025",
+    "powered": "Propulsé par l'IA",
+    "disclaimer": "Utilisez de manière responsable. Nous ne sommes pas responsables des conséquences."
   },
-  "language": {
-    "select": "Langue"
+  "errors": {
+    "generic": "Quelque chose s'est mal passé. Veuillez réessayer.",
+    "network": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "noTokens": "Plus d'excuses restantes. Veuillez en acheter plus."
   }
 }

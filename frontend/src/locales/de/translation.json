@@ -1,87 +1,87 @@
 {
   "app": {
-    "title": "AI Ausreden-Generator",
-    "subtitle": "Perfekte Ausreden für jede Situation",
-    "tagline": "Keine Lust auf Arbeit? Party vermeiden? Lass AI die perfekte Ausrede erstellen!"
+    "title": "KI-Ausreden-Generator",
+    "tagline": "Kreative Ausreden, frisch für Sie getippt",
+    "description": "Generieren Sie glaubwürdige Ausreden für jede Situation mit KI. Wie ein cleverer Freund, der immer weiß, was zu sagen ist."
   },
-  "scenarios": {
-    "title": "Wofür brauchst du eine Ausrede?",
-    "skip_work": "Arbeit schwänzen",
-    "avoid_party": "Party vermeiden",
-    "late_arrival": "Verspätung erklären",
-    "forgot_task": "Aufgabe vergessen",
-    "cancel_plans": "Pläne absagen",
-    "miss_meeting": "Meeting verpassen",
-    "custom": "Eigene"
+  "nav": {
+    "home": "Startseite",
+    "pricing": "Preise",
+    "language": "Sprache"
   },
-  "styles": {
-    "title": "Ausreden-Stil",
-    "sincere": "Aufrichtig",
-    "professional": "Professionell",
-    "creative": "Kreativ",
-    "dramatic": "Dramatisch",
-    "absurd": "Absurd"
+  "categories": {
+    "title": "Was ist die Situation?",
+    "late": "Zu spät",
+    "sick_leave": "Krankmeldung",
+    "decline": "Absage",
+    "forgot": "Vergessen",
+    "deadline": "Frist verpasst",
+    "meeting": "Meeting verpasst",
+    "homework": "Hausaufgaben",
+    "other": "Sonstiges"
   },
-  "form": {
-    "targetPerson": "Wem erzählst du es?",
-    "targetPlaceholder": "z.B. Chef, Freund, Mutter",
-    "customScenario": "Beschreibe deine Situation",
-    "customPlaceholder": "Wofür brauchst du eine Ausrede?",
-    "urgency": "Dringlichkeit",
-    "generate": "Ausrede generieren",
-    "generating": "Erstelle deine perfekte Ausrede..."
+  "urgency": {
+    "title": "Wie dramatisch?",
+    "normal": "Normal",
+    "normalDesc": "Glaubwürdig und vernünftig",
+    "urgent": "Dringend",
+    "urgentDesc": "Etwas dramatisch aber plausibel",
+    "extreme": "Extrem",
+    "extremeDesc": "Wild und theatralisch!"
   },
-  "result": {
-    "title": "Deine perfekte Ausrede",
+  "generator": {
+    "contextPlaceholder": "Mehr Kontext hinzufügen (optional)...",
+    "generate": "Ausreden generieren",
+    "generating": "Tippe...",
     "copy": "Kopieren",
     "copied": "Kopiert!",
-    "tryAnother": "Nochmal versuchen",
-    "freeTrialUsed": "Kostenlose Testversion verwendet"
+    "noTokens": "Keine Ausreden mehr! Kaufen Sie mehr, um fortzufahren.",
+    "buyMore": "Mehr Ausreden holen",
+    "freeTrial": "Kostenlose Testversion",
+    "freeTrialUsed": "Testversion verwendet",
+    "tokensRemaining": "{{count}} Ausrede(n) übrig"
   },
-  "tokens": {
-    "remaining": "Verbleibend",
-    "freeTrialAvailable": "1 kostenloser Test",
-    "buyMore": "Mehr kaufen"
+  "excuse": {
+    "tone": "Ton",
+    "tip": "Profi-Tipp"
   },
   "pricing": {
     "title": "Mehr Ausreden holen",
-    "subtitle": "Nie wieder ohne perfekte Ausrede",
-    "starter": {
+    "subtitle": "Nie wieder ohne kreative Ausreden",
+    "pack10": {
       "name": "Starter-Paket",
-      "description": "3 Ausreden-Generierungen",
-      "price": "2,99 $"
+      "excuses": "10 Ausreden",
+      "description": "Perfekt für gelegentliche Bedürfnisse"
     },
-    "regular": {
-      "name": "Standard-Paket",
-      "description": "10 Ausreden-Generierungen",
-      "popular": "Beliebteste",
-      "price": "7,99 $"
+    "pack30": {
+      "name": "Wert-Paket",
+      "excuses": "30 Ausreden",
+      "description": "Bestes Preis-Leistungs-Verhältnis",
+      "popular": "Beliebteste"
     },
-    "pro": {
-      "name": "Pro-Paket",
-      "description": "30 Ausreden-Generierungen",
-      "price": "19,99 $"
+    "unlimited": {
+      "name": "Unbegrenzt",
+      "excuses": "Unbegrenzt / Monat",
+      "description": "Für den chronischen Ausredenerfinder"
     },
-    "buy": "Jetzt kaufen"
+    "buy": "Kaufen",
+    "secure": "Sichere Zahlung über Creem"
   },
-  "payment": {
-    "success": {
-      "title": "Zahlung erfolgreich!",
-      "subtitle": "Deine Tokens wurden hinzugefügt",
-      "tokensAdded": "Tokens hinzugefügt",
-      "backToGenerator": "Zurück zum Generator"
-    }
-  },
-  "errors": {
-    "noTokens": "Keine Tokens mehr. Bitte kaufe mehr, um fortzufahren.",
-    "generation": "Ausrede konnte nicht generiert werden. Bitte versuche es erneut.",
-    "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung."
+  "success": {
+    "title": "Zahlung erfolgreich!",
+    "message": "Ihre Ausreden sind bereit. Starten Sie die Generierung!",
+    "tokensAdded": "{{count}} Ausreden zu Ihrem Konto hinzugefügt",
+    "unlimitedActivated": "Unbegrenzte Ausreden für 30 Tage aktiviert",
+    "backToHome": "Generierung starten"
   },
   "footer": {
-    "poweredBy": "Powered by AI",
-    "disclaimer": "Generierte Ausreden dienen nur der Unterhaltung."
+    "tagline": "Generiert Ausreden seit 2025",
+    "powered": "Angetrieben von KI",
+    "disclaimer": "Verantwortungsvoll verwenden. Wir übernehmen keine Verantwortung für Konsequenzen."
   },
-  "language": {
-    "select": "Sprache"
+  "errors": {
+    "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "noTokens": "Keine Ausreden mehr vorhanden. Bitte kaufen Sie mehr."
   }
 }

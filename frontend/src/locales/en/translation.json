@@ -1,87 +1,87 @@
 {
   "app": {
     "title": "AI Excuse Generator",
-    "subtitle": "Perfect excuses for any situation",
-    "tagline": "Don't want to work? Skip that party? Let AI craft the perfect excuse!"
+    "tagline": "Creative excuses, typed fresh for you",
+    "description": "Generate believable excuses for any situation using AI. Like having a clever friend who always knows what to say."
   },
-  "scenarios": {
-    "title": "What do you need an excuse for?",
-    "skip_work": "Skip Work",
-    "avoid_party": "Avoid Party",
-    "late_arrival": "Late Arrival",
-    "forgot_task": "Forgot Task",
-    "cancel_plans": "Cancel Plans",
-    "miss_meeting": "Miss Meeting",
-    "custom": "Custom"
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "language": "Language"
   },
-  "styles": {
-    "title": "Excuse Style",
-    "sincere": "Sincere",
-    "professional": "Professional",
-    "creative": "Creative",
-    "dramatic": "Dramatic",
-    "absurd": "Absurd"
+  "categories": {
+    "title": "What's the situation?",
+    "late": "Running Late",
+    "sick_leave": "Sick Leave",
+    "decline": "Declining Invitation",
+    "forgot": "Forgot Something",
+    "deadline": "Missed Deadline",
+    "meeting": "Missing Meeting",
+    "homework": "Homework/Assignment",
+    "other": "Other"
   },
-  "form": {
-    "targetPerson": "Who are you telling?",
-    "targetPlaceholder": "e.g., Boss, Friend, Mom",
-    "customScenario": "Describe your situation",
-    "customPlaceholder": "What do you need an excuse for?",
-    "urgency": "Urgency Level",
-    "generate": "Generate Excuse",
-    "generating": "Creating your perfect excuse..."
+  "urgency": {
+    "title": "How dramatic?",
+    "normal": "Normal",
+    "normalDesc": "Believable and reasonable",
+    "urgent": "Urgent",
+    "urgentDesc": "A bit dramatic but plausible",
+    "extreme": "Extreme",
+    "extremeDesc": "Wild and theatrical!"
   },
-  "result": {
-    "title": "Your Perfect Excuse",
+  "generator": {
+    "contextPlaceholder": "Add more context (optional)...",
+    "generate": "Generate Excuses",
+    "generating": "Typing...",
     "copy": "Copy",
     "copied": "Copied!",
-    "tryAnother": "Try Another",
-    "freeTrialUsed": "Free trial used"
+    "noTokens": "No excuses left! Purchase more to continue.",
+    "buyMore": "Get More Excuses",
+    "freeTrial": "Free Trial",
+    "freeTrialUsed": "Free trial used",
+    "tokensRemaining": "{{count}} excuse(s) remaining"
   },
-  "tokens": {
-    "remaining": "Remaining",
-    "freeTrialAvailable": "1 Free Trial",
-    "buyMore": "Get More"
+  "excuse": {
+    "tone": "Tone",
+    "tip": "Pro tip"
   },
   "pricing": {
     "title": "Get More Excuses",
-    "subtitle": "Never run out of perfect excuses",
-    "starter": {
+    "subtitle": "Never run out of creative excuses again",
+    "pack10": {
       "name": "Starter Pack",
-      "description": "3 excuse generations",
-      "price": "$2.99"
+      "excuses": "10 Excuses",
+      "description": "Perfect for occasional needs"
     },
-    "regular": {
-      "name": "Regular Pack",
-      "description": "10 excuse generations",
-      "popular": "Most Popular",
-      "price": "$7.99"
+    "pack30": {
+      "name": "Value Pack",
+      "excuses": "30 Excuses",
+      "description": "Best value for regular users",
+      "popular": "Most Popular"
     },
-    "pro": {
-      "name": "Pro Pack",
-      "description": "30 excuse generations",
-      "price": "$19.99"
+    "unlimited": {
+      "name": "Unlimited",
+      "excuses": "Unlimited / month",
+      "description": "For the chronic excuse-maker"
     },
-    "buy": "Buy Now"
+    "buy": "Purchase",
+    "secure": "Secure payment via Creem"
   },
-  "payment": {
-    "success": {
-      "title": "Payment Successful!",
-      "subtitle": "Your tokens have been added",
-      "tokensAdded": "tokens added",
-      "backToGenerator": "Back to Generator"
-    }
-  },
-  "errors": {
-    "noTokens": "No tokens left. Please purchase more to continue.",
-    "generation": "Failed to generate excuse. Please try again.",
-    "network": "Network error. Please check your connection."
+  "success": {
+    "title": "Payment Successful!",
+    "message": "Your excuses are ready. Start generating!",
+    "tokensAdded": "{{count}} excuses added to your account",
+    "unlimitedActivated": "Unlimited excuses activated for 30 days",
+    "backToHome": "Start Generating"
   },
   "footer": {
-    "poweredBy": "Powered by AI",
-    "disclaimer": "Excuses generated are for entertainment purposes only."
+    "tagline": "Generating excuses since 2025",
+    "powered": "Powered by AI",
+    "disclaimer": "Use responsibly. We're not responsible for any consequences."
   },
-  "language": {
-    "select": "Language"
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "noTokens": "No excuses remaining. Please purchase more."
   }
 }

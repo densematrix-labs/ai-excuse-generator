@@ -1,45 +1,59 @@
 # AI Excuse Generator 🎭
 
-> 不想上班？不想聚会？AI帮你找个完美的借口！
-
-AI-powered excuse generator that helps you craft the perfect excuse for any situation.
+Generate creative, believable excuses for any situation using AI. Like having a clever friend who always knows what to say!
 
 ## Features
 
-- 🎯 **Smart Scenarios**: Pre-built scenarios for common situations
-- 🤖 **AI Generation**: Natural, believable excuses powered by AI
-- 🎨 **Style Options**: From sincere to absurdly funny
-- 🌍 **7 Languages**: EN/ZH/JA/DE/FR/KO/ES support
-- 📋 **One-Click Copy**: Easy sharing
+- 🎯 **8 Excuse Categories**: Late, Sick Leave, Declining Invitations, Forgetting Things, Missing Deadlines, Missing Meetings, Homework, and Other
+- 🎭 **3 Drama Levels**: Normal (believable), Urgent (slightly dramatic), Extreme (wild and theatrical!)
+- 🌍 **7 Languages**: English, Chinese, Japanese, German, French, Korean, Spanish
+- 💳 **Pay-per-use**: Free trial + affordable token packs
 
 ## Tech Stack
 
-- **Frontend**: React + Vite (TypeScript) + TailwindCSS
+- **Frontend**: React + Vite + TypeScript
 - **Backend**: Python FastAPI
-- **AI**: LLM via llm-proxy.densematrix.ai
-- **Deploy**: Docker
+- **AI**: Gemini 3 Flash Preview (via llm-proxy)
+- **Styling**: Custom CSS with Retro Typewriter aesthetic
 
-## Quick Start
+## Local Development
 
+### Backend
 ```bash
-# Clone
-git clone https://github.com/densematrix-labs/ai-excuse-generator.git
-cd ai-excuse-generator
-
-# Backend
 cd backend
-python -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-cp ../.env.example .env
-# Edit .env with your keys
 uvicorn app.main:app --reload
+```
 
-# Frontend (new terminal)
+### Frontend
+```bash
 cd frontend
 npm install
 npm run dev
 ```
+
+### Running Tests
+```bash
+# Backend
+cd backend
+pytest --cov=app --cov-report=term-missing
+
+# Frontend
+cd frontend
+npm run test:coverage
+```
+
+## Docker
+
+```bash
+docker-compose up --build
+```
+
+Access at http://localhost:3010
+
+## Live Demo
+
+https://excuse.demo.densematrix.ai
 
 ## License
 

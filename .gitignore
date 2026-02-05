@@ -5,9 +5,10 @@ __pycache__/
 .venv/
 venv/
 
-# Build
+# Build outputs
 dist/
 build/
+*.egg-info/
 
 # Environment
 .env
@@ -15,21 +16,24 @@ build/
 .env.*.local
 
 # IDE
-.vscode/
 .idea/
+.vscode/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
 # Testing
 coverage/
-.coverage
 htmlcov/
+.coverage
 .pytest_cache/
 
 # Logs
 *.log
 logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
