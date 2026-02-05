@@ -26,9 +26,8 @@ class Settings(BaseSettings):
     creem_product_ids: Optional[str] = None  # JSON string: {"pack_10":"prod_xxx",...}
     
     # Individual product IDs (will be parsed from creem_product_ids)
+    creem_product_id_3: Optional[str] = None
     creem_product_id_10: Optional[str] = None
-    creem_product_id_30: Optional[str] = None
-    creem_product_id_unlimited: Optional[str] = None
     
     # Free trial settings
     free_trial_count: int = 1
@@ -38,12 +37,10 @@ class Settings(BaseSettings):
         if self.creem_product_ids:
             try:
                 product_ids = json.loads(self.creem_product_ids)
+                if not self.creem_product_id_3:
+                    object.__setattr__(self, "creem_product_id_3", product_ids.get("pack_3"))
                 if not self.creem_product_id_10:
                     object.__setattr__(self, "creem_product_id_10", product_ids.get("pack_10"))
-                if not self.creem_product_id_30:
-                    object.__setattr__(self, "creem_product_id_30", product_ids.get("pack_30"))
-                if not self.creem_product_id_unlimited:
-                    object.__setattr__(self, "creem_product_id_unlimited", product_ids.get("unlimited"))
             except json.JSONDecodeError:
                 pass
     

@@ -14,9 +14,8 @@ router = APIRouter()
 
 # Product configurations
 PRODUCTS = {
-    "pack_10": {"tokens": 10, "price": 4.99, "name": "10 Excuses Pack"},
-    "pack_30": {"tokens": 30, "price": 9.99, "name": "30 Excuses Pack"},
-    "unlimited": {"tokens": 0, "price": 14.99, "name": "Unlimited Monthly"},
+    "pack_3": {"tokens": 3, "price": 2.99, "name": "3 Excuses Pack"},
+    "pack_10": {"tokens": 10, "price": 6.99, "name": "10 Excuses Pack"},
 }
 
 
@@ -30,9 +29,8 @@ def get_creem_api_base(api_key: str) -> str:
 def get_creem_product_id(settings, product_type: str) -> Optional[str]:
     """Get Creem product ID for a given product type."""
     product_id_map = {
+        "pack_3": settings.creem_product_id_3,
         "pack_10": settings.creem_product_id_10,
-        "pack_30": settings.creem_product_id_30,
-        "unlimited": settings.creem_product_id_unlimited,
     }
     return product_id_map.get(product_type)
 
