@@ -1,0 +1,37 @@
+{
+  "tool": "AI Excuse Generator",
+  "tool_url": "https://excuse.demo.densematrix.ai",
+  "dimensions": [
+    {
+      "name": "situation",
+      "name_zh": "场景",
+      "values_en": ["work", "school", "meeting", "appointment", "date", "party", "family-gathering", "gym", "deadline", "event"],
+      "values_zh": ["工作", "学校", "会议", "约会", "约会", "聚会", "家庭聚会", "健身房", "截止日期", "活动"]
+    },
+    {
+      "name": "reason",
+      "name_zh": "原因类型",
+      "values_en": ["late", "absent", "leaving-early", "forgot", "didnt-finish", "cant-attend", "need-reschedule", "emergency"],
+      "values_zh": ["迟到", "缺席", "早退", "忘记", "没完成", "无法参加", "需要改期", "紧急情况"]
+    },
+    {
+      "name": "tone",
+      "name_zh": "语气",
+      "values_en": ["professional", "casual", "apologetic", "confident", "humorous", "serious"],
+      "values_zh": ["专业", "随意", "道歉", "自信", "幽默", "严肃"]
+    },
+    {
+      "name": "recipient",
+      "name_zh": "接收者",
+      "values_en": ["boss", "teacher", "client", "friend", "family", "coworker", "doctor", "landlord"],
+      "values_zh": ["老板", "老师", "客户", "朋友", "家人", "同事", "医生", "房东"]
+    }
+  ],
+  "combinations": [
+    ["situation", "reason"],
+    ["situation", "tone"],
+    ["reason", "recipient"],
+    ["situation", "recipient"]
+  ],
+  "estimated_pages": 320
+}

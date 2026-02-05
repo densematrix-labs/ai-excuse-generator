@@ -37,3 +37,7 @@ Thumbs.db
 
 # Docker
 .docker/
+
+# Programmatic SEO (generated at build time)
+frontend/public/p/
+frontend/public/sitemap-programmatic.xml
