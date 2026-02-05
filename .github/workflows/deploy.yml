@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 env:
-  DEPLOY_HOST: langsheng
   DEPLOY_PATH: /opt/demos/excuse-generator
   APP_NAME: excuse-generator
 
@@ -55,23 +54,14 @@ jobs:
       
       - name: Create .env file
         run: |
-          cat > .env << EOF
-          # Backend
+          cat > .env << ENVEOF
           LLM_PROXY_URL=https://llm-proxy.densematrix.ai
           LLM_PROXY_KEY=${{ secrets.LLM_PROXY_KEY }}
-          
-          # Database
           DATABASE_URL=sqlite:///./excuse.db
-          
-          # Creem Payment
           CREEM_API_KEY=${{ secrets.CREEM_API_KEY }}
           CREEM_WEBHOOK_SECRET=${{ secrets.CREEM_WEBHOOK_SECRET }}
           CREEM_PRODUCT_IDS=${{ secrets.CREEM_PRODUCT_IDS }}
-          
-          # Ports
-          FRONTEND_PORT=3000
-          BACKEND_PORT=8000
-          EOF
+          ENVEOF
       
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -82,8 +72,6 @@ jobs:
           script: |
             cd ${{ env.DEPLOY_PATH }}
             git pull origin main
-            docker compose down
-            docker compose up -d --build
             
       - name: Copy .env to server
         uses: appleboy/scp-action@v0.1.7
@@ -94,7 +82,7 @@ jobs:
           source: ".env"
           target: "${{ env.DEPLOY_PATH }}"
           
-      - name: Restart with new env
+      - name: Rebuild and restart
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -103,9 +91,31 @@ jobs:
           script: |
             cd ${{ env.DEPLOY_PATH }}
             docker compose down
-            docker compose up -d
+            docker compose up -d --build
             
       - name: Health check
         run: |
           sleep 30
           curl -sf https://excuse.demo.densematrix.ai/health || exit 1
+
+      - name: Notify Slack on success
+        if: success()
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: 'C0AC1DWEBU3'
+          slack-message: "✅ *${{ github.repository }}* deployed successfully\n• Branch: `${{ github.ref_name }}`\n• Commit: `${{ github.sha }}`\n• <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+  notify-failure:
+    needs: [test, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack on failure
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: 'C0AC1DWEBU3'
+          slack-message: "❌ *${{ github.repository }}* deployment failed\n• Branch: `${{ github.ref_name }}`\n• <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
