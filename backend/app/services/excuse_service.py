@@ -75,7 +75,7 @@ Generate the excuse now:"""
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "gpt-4o-mini",
+                    "model": "gemini-2.5-flash",
                     "messages": [
                         {"role": "system", "content": "You are a helpful assistant that generates creative and believable excuses."},
                         {"role": "user", "content": prompt}
