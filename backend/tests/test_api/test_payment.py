@@ -4,7 +4,7 @@ import json
 import hmac
 import hashlib
 from fastapi.testclient import TestClient
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock, AsyncMock
 
 from app.main import app
 
@@ -28,47 +28,86 @@ def reset_services():
     ts._token_service = None
 
 
+@pytest.fixture
+def mock_creem_settings():
+    """Mock settings with Creem configuration."""
+    mock_settings = MagicMock()
+    mock_settings.creem_api_key = "creem_test_mock_key"
+    mock_settings.creem_webhook_secret = None
+    mock_settings.creem_product_id_10 = "prod_test_10"
+    mock_settings.creem_product_id_30 = "prod_test_30"
+    mock_settings.creem_product_id_unlimited = "prod_test_unlimited"
+    return mock_settings
+
+
 class TestCreateCheckout:
     """Tests for POST /api/checkout endpoint."""
     
-    def test_checkout_pack_10(self, client, test_device_id):
+    def test_checkout_pack_10(self, client, test_device_id, mock_creem_settings):
         """Should create checkout for 10 pack."""
-        response = client.post(
-            "/api/checkout",
-            json={
-                "product_type": "pack_10",
-                "device_id": test_device_id,
-            },
-        )
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "checkout_url": "https://checkout.creem.io/test",
+            "id": "session_test_123",
+        }
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
+            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
+                response = client.post(
+                    "/api/checkout",
+                    json={
+                        "product_type": "pack_10",
+                        "device_id": test_device_id,
+                    },
+                )
         
         assert response.status_code == 200
         data = response.json()
         assert "checkout_url" in data
         assert "session_id" in data
     
-    def test_checkout_pack_30(self, client, test_device_id):
+    def test_checkout_pack_30(self, client, test_device_id, mock_creem_settings):
         """Should create checkout for 30 pack."""
-        response = client.post(
-            "/api/checkout",
-            json={
-                "product_type": "pack_30",
-                "device_id": test_device_id,
-            },
-        )
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "checkout_url": "https://checkout.creem.io/test",
+            "id": "session_test_123",
+        }
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
+            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
+                response = client.post(
+                    "/api/checkout",
+                    json={
+                        "product_type": "pack_30",
+                        "device_id": test_device_id,
+                    },
+                )
         
         assert response.status_code == 200
         data = response.json()
         assert "checkout_url" in data
     
-    def test_checkout_unlimited(self, client, test_device_id):
+    def test_checkout_unlimited(self, client, test_device_id, mock_creem_settings):
         """Should create checkout for unlimited."""
-        response = client.post(
-            "/api/checkout",
-            json={
-                "product_type": "unlimited",
-                "device_id": test_device_id,
-            },
-        )
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "checkout_url": "https://checkout.creem.io/test",
+            "id": "session_test_123",
+        }
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
+            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
+                response = client.post(
+                    "/api/checkout",
+                    json={
+                        "product_type": "unlimited",
+                        "device_id": test_device_id,
+                    },
+                )
         
         assert response.status_code == 200
     
@@ -96,19 +135,44 @@ class TestCreateCheckout:
         
         assert response.status_code == 422
     
-    def test_checkout_with_urls(self, client, test_device_id):
+    def test_checkout_with_urls(self, client, test_device_id, mock_creem_settings):
         """Should accept success and cancel URLs."""
-        response = client.post(
-            "/api/checkout",
-            json={
-                "product_type": "pack_10",
-                "device_id": test_device_id,
-                "success_url": "https://example.com/success",
-                "cancel_url": "https://example.com/cancel",
-            },
-        )
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "checkout_url": "https://checkout.creem.io/test",
+            "id": "session_test_123",
+        }
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
+            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
+                response = client.post(
+                    "/api/checkout",
+                    json={
+                        "product_type": "pack_10",
+                        "device_id": test_device_id,
+                        "success_url": "https://example.com/success",
+                        "cancel_url": "https://example.com/cancel",
+                    },
+                )
         
         assert response.status_code == 200
+    
+    def test_checkout_no_api_key(self, client, test_device_id):
+        """Should return 503 when Creem is not configured."""
+        mock_settings = MagicMock()
+        mock_settings.creem_api_key = None
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_settings):
+            response = client.post(
+                "/api/checkout",
+                json={
+                    "product_type": "pack_10",
+                    "device_id": test_device_id,
+                },
+            )
+        
+        assert response.status_code == 503
 
 
 class TestWebhook:
@@ -117,8 +181,8 @@ class TestWebhook:
     def test_webhook_checkout_completed(self, client, test_device_id):
         """Should handle checkout.completed event."""
         payload = {
-            "event_type": "checkout.completed",
-            "data": {
+            "eventType": "checkout.completed",
+            "object": {
                 "metadata": {
                     "device_id": test_device_id,
                     "product_type": "pack_10",
@@ -129,7 +193,7 @@ class TestWebhook:
         response = client.post("/api/webhook", json=payload)
         
         assert response.status_code == 200
-        assert response.json()["status"] == "ok"
+        assert response.json()["received"] == True
         
         # Verify tokens were added
         status_response = client.get(f"/api/tokens/{test_device_id}")
@@ -139,8 +203,8 @@ class TestWebhook:
     def test_webhook_unlimited_subscription(self, client, test_device_id):
         """Should handle unlimited subscription."""
         payload = {
-            "event_type": "checkout.completed",
-            "data": {
+            "eventType": "checkout.completed",
+            "object": {
                 "metadata": {
                     "device_id": test_device_id,
                     "product_type": "unlimited",
@@ -160,8 +224,8 @@ class TestWebhook:
     def test_webhook_unknown_event(self, client):
         """Should handle unknown event types gracefully."""
         payload = {
-            "event_type": "unknown.event",
-            "data": {},
+            "eventType": "unknown.event",
+            "object": {},
         }
         
         response = client.post("/api/webhook", json=payload)
@@ -171,8 +235,8 @@ class TestWebhook:
     def test_webhook_missing_metadata(self, client):
         """Should handle missing metadata gracefully."""
         payload = {
-            "event_type": "checkout.completed",
-            "data": {},
+            "eventType": "checkout.completed",
+            "object": {},
         }
         
         response = client.post("/api/webhook", json=payload)
@@ -182,17 +246,18 @@ class TestWebhook:
     def test_webhook_invalid_signature(self, client):
         """Should reject invalid webhook signature when secret is configured."""
         payload = {
-            "event_type": "checkout.completed",
-            "data": {},
+            "eventType": "checkout.completed",
+            "object": {},
         }
         
-        with patch("app.api.payment_router.get_settings") as mock_settings:
-            mock_settings.return_value.creem_webhook_secret = "test_secret"
-            
+        mock_settings = MagicMock()
+        mock_settings.creem_webhook_secret = "test_secret"
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_settings):
             response = client.post(
                 "/api/webhook",
                 json=payload,
-                headers={"X-Creem-Signature": "invalid_signature"},
+                headers={"creem-signature": "invalid_signature"},
             )
         
         assert response.status_code == 401
@@ -200,8 +265,8 @@ class TestWebhook:
     def test_webhook_valid_signature(self, client, test_device_id):
         """Should accept valid webhook signature."""
         payload = {
-            "event_type": "checkout.completed",
-            "data": {
+            "eventType": "checkout.completed",
+            "object": {
                 "metadata": {
                     "device_id": test_device_id,
                     "product_type": "pack_10",
@@ -213,15 +278,16 @@ class TestWebhook:
         body = json.dumps(payload).encode()
         signature = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         
-        with patch("app.api.payment_router.get_settings") as mock_settings:
-            mock_settings.return_value.creem_webhook_secret = secret
-            
+        mock_settings = MagicMock()
+        mock_settings.creem_webhook_secret = secret
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_settings):
             response = client.post(
                 "/api/webhook",
                 content=body,
                 headers={
                     "Content-Type": "application/json",
-                    "X-Creem-Signature": signature,
+                    "creem-signature": signature,
                 },
             )
         

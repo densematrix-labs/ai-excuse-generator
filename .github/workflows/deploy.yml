@@ -7,7 +7,6 @@ on:
 
 env:
   DEPLOY_PATH: /opt/demos/excuse-generator
-  APP_NAME: excuse-generator
 
 jobs:
   test:
