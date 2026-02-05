@@ -34,14 +34,37 @@ def mock_creem_settings():
     mock_settings = MagicMock()
     mock_settings.creem_api_key = "creem_test_mock_key"
     mock_settings.creem_webhook_secret = None
+    mock_settings.creem_product_id_3 = "prod_test_3"
     mock_settings.creem_product_id_10 = "prod_test_10"
-    mock_settings.creem_product_id_30 = "prod_test_30"
-    mock_settings.creem_product_id_unlimited = "prod_test_unlimited"
     return mock_settings
 
 
 class TestCreateCheckout:
     """Tests for POST /api/checkout endpoint."""
+    
+    def test_checkout_pack_3(self, client, test_device_id, mock_creem_settings):
+        """Should create checkout for 3 pack."""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "checkout_url": "https://checkout.creem.io/test",
+            "id": "session_test_123",
+        }
+        
+        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
+            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
+                response = client.post(
+                    "/api/checkout",
+                    json={
+                        "product_type": "pack_3",
+                        "device_id": test_device_id,
+                    },
+                )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert "checkout_url" in data
+        assert "session_id" in data
     
     def test_checkout_pack_10(self, client, test_device_id, mock_creem_settings):
         """Should create checkout for 10 pack."""
@@ -65,51 +88,6 @@ class TestCreateCheckout:
         assert response.status_code == 200
         data = response.json()
         assert "checkout_url" in data
-        assert "session_id" in data
-    
-    def test_checkout_pack_30(self, client, test_device_id, mock_creem_settings):
-        """Should create checkout for 30 pack."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "checkout_url": "https://checkout.creem.io/test",
-            "id": "session_test_123",
-        }
-        
-        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
-            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
-                response = client.post(
-                    "/api/checkout",
-                    json={
-                        "product_type": "pack_30",
-                        "device_id": test_device_id,
-                    },
-                )
-        
-        assert response.status_code == 200
-        data = response.json()
-        assert "checkout_url" in data
-    
-    def test_checkout_unlimited(self, client, test_device_id, mock_creem_settings):
-        """Should create checkout for unlimited."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "checkout_url": "https://checkout.creem.io/test",
-            "id": "session_test_123",
-        }
-        
-        with patch("app.api.payment_router.get_settings", return_value=mock_creem_settings):
-            with patch("httpx.AsyncClient.post", new_callable=AsyncMock, return_value=mock_response):
-                response = client.post(
-                    "/api/checkout",
-                    json={
-                        "product_type": "unlimited",
-                        "device_id": test_device_id,
-                    },
-                )
-        
-        assert response.status_code == 200
     
     def test_checkout_invalid_product(self, client, test_device_id):
         """Should reject invalid product type."""
@@ -200,14 +178,14 @@ class TestWebhook:
         data = status_response.json()
         assert data["total_tokens"] == 10
     
-    def test_webhook_unlimited_subscription(self, client, test_device_id):
-        """Should handle unlimited subscription."""
+    def test_webhook_pack_3(self, client, test_device_id):
+        """Should handle pack_3 purchase."""
         payload = {
             "eventType": "checkout.completed",
             "object": {
                 "metadata": {
                     "device_id": test_device_id,
-                    "product_type": "unlimited",
+                    "product_type": "pack_3",
                 },
             },
         }
@@ -216,10 +194,10 @@ class TestWebhook:
         
         assert response.status_code == 200
         
-        # Verify unlimited was set
+        # Verify tokens were added
         status_response = client.get(f"/api/tokens/{test_device_id}")
         data = status_response.json()
-        assert data["is_unlimited"] == True
+        assert data["total_tokens"] == 3
     
     def test_webhook_unknown_event(self, client):
         """Should handle unknown event types gracefully."""
@@ -304,7 +282,7 @@ class TestGetProducts:
         assert response.status_code == 200
         data = response.json()
         assert "products" in data
-        assert len(data["products"]) == 3
+        assert len(data["products"]) == 2
     
     def test_products_have_required_fields(self, client):
         """Each product should have required fields."""
@@ -325,4 +303,4 @@ class TestGetProducts:
         
         popular_products = [p for p in data["products"] if p.get("popular")]
         assert len(popular_products) == 1
-        assert popular_products[0]["id"] == "pack_30"
+        assert popular_products[0]["id"] == "pack_10"

@@ -23,12 +23,11 @@ class TestSettings:
         from app.config import Settings
         
         settings = Settings(
-            creem_product_ids='{"pack_10":"prod_10","pack_30":"prod_30","unlimited":"prod_unlimited"}'
+            creem_product_ids='{"pack_3":"prod_3","pack_10":"prod_10"}'
         )
         
+        assert settings.creem_product_id_3 == "prod_3"
         assert settings.creem_product_id_10 == "prod_10"
-        assert settings.creem_product_id_30 == "prod_30"
-        assert settings.creem_product_id_unlimited == "prod_unlimited"
     
     def test_individual_product_ids_override_json(self):
         """Individual product IDs should not be overwritten if already set."""
@@ -49,9 +48,8 @@ class TestSettings:
             creem_product_ids='invalid json'
         )
         
+        assert settings.creem_product_id_3 is None
         assert settings.creem_product_id_10 is None
-        assert settings.creem_product_id_30 is None
-        assert settings.creem_product_id_unlimited is None
     
     def test_empty_creem_product_ids(self):
         """Should handle empty/None creem_product_ids."""

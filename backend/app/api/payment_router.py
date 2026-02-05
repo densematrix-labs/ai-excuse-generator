@@ -154,31 +154,22 @@ async def get_products():
     return {
         "products": [
             {
+                "id": "pack_3",
+                "name": "3 Excuses Pack",
+                "tokens": 3,
+                "price": 2.99,
+                "currency": "USD",
+                "description": "Perfect for trying out",
+                "popular": False,
+            },
+            {
                 "id": "pack_10",
                 "name": "10 Excuses Pack",
                 "tokens": 10,
-                "price": 4.99,
-                "currency": "USD",
-                "description": "Perfect for occasional excuse needs",
-                "popular": False,
-            },
-            {
-                "id": "pack_30",
-                "name": "30 Excuses Pack",
-                "tokens": 30,
-                "price": 9.99,
+                "price": 6.99,
                 "currency": "USD",
                 "description": "Best value for regular users",
                 "popular": True,
-            },
-            {
-                "id": "unlimited",
-                "name": "Unlimited Monthly",
-                "tokens": -1,
-                "price": 14.99,
-                "currency": "USD",
-                "description": "Unlimited excuses for 30 days",
-                "popular": False,
             },
         ]
     }
