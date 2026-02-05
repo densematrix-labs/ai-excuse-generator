@@ -37,10 +37,10 @@ async def create_checkout(request: CheckoutRequest) -> CheckoutResponse:
     # TODO: Implement actual Creem API call when product IDs are configured
     
     if not settings.creem_api_key:
-        # Mock mode - return a test checkout URL
-        return CheckoutResponse(
-            checkout_url=f"https://checkout.creem.io/test?product={request.product_type}&device={request.device_id}",
-            session_id=f"mock_session_{request.device_id}_{request.product_type}",
+        # Payment not configured - return error instead of fake URL
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Payment system is not configured. Please contact support.",
         )
     
     # Real Creem API call would go here
