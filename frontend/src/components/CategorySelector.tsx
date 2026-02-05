@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { ExcuseCategory } from '../store/useExcuseStore'
+import type { ExcuseCategory } from '../store/useExcuseStore'
 import './CategorySelector.css'
 
 const categories: { id: ExcuseCategory; icon: string }[] = [

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { UrgencyLevel } from '../store/useExcuseStore'
+import type { UrgencyLevel } from '../store/useExcuseStore'
 import './UrgencySelector.css'
 
 const urgencyLevels: { id: UrgencyLevel; icon: string }[] = [

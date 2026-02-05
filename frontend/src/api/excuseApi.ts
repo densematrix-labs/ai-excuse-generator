@@ -1,4 +1,4 @@
-import { ExcuseCategory, UrgencyLevel, Excuse } from '../store/useExcuseStore'
+import type { ExcuseCategory, UrgencyLevel, Excuse } from '../store/useExcuseStore'
 
 const API_BASE = '/api'
 

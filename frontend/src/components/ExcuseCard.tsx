@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { Excuse } from '../store/useExcuseStore'
+import type { Excuse } from '../store/useExcuseStore'
 import './ExcuseCard.css'
 
 interface ExcuseCardProps {
