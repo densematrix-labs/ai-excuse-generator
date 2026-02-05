@@ -2,6 +2,7 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from typing import Optional
+import json
 
 
 class Settings(BaseSettings):
@@ -22,12 +23,29 @@ class Settings(BaseSettings):
     # Creem payment settings
     creem_api_key: Optional[str] = None
     creem_webhook_secret: Optional[str] = None
+    creem_product_ids: Optional[str] = None  # JSON string: {"pack_10":"prod_xxx",...}
+    
+    # Individual product IDs (will be parsed from creem_product_ids)
     creem_product_id_10: Optional[str] = None
     creem_product_id_30: Optional[str] = None
     creem_product_id_unlimited: Optional[str] = None
     
     # Free trial settings
     free_trial_count: int = 1
+    
+    def model_post_init(self, __context) -> None:
+        """Parse creem_product_ids JSON into individual fields."""
+        if self.creem_product_ids:
+            try:
+                product_ids = json.loads(self.creem_product_ids)
+                if not self.creem_product_id_10:
+                    object.__setattr__(self, "creem_product_id_10", product_ids.get("pack_10"))
+                if not self.creem_product_id_30:
+                    object.__setattr__(self, "creem_product_id_30", product_ids.get("pack_30"))
+                if not self.creem_product_id_unlimited:
+                    object.__setattr__(self, "creem_product_id_unlimited", product_ids.get("unlimited"))
+            except json.JSONDecodeError:
+                pass
     
     class Config:
         env_file = ".env"
