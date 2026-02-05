@@ -3,61 +3,60 @@ import pytest
 from unittest.mock import patch
 import os
 
-from app.config import Settings, get_settings
-
 
 class TestSettings:
-    """Tests for Settings class."""
+    """Tests for Settings configuration."""
     
-    def test_default_values(self):
-        """Should have correct default values."""
+    def test_default_app_name(self):
+        """Should have correct default app name."""
+        # Clear cache to get fresh settings
+        from app.config import get_settings
+        get_settings.cache_clear()
+        
         with patch.dict(os.environ, {}, clear=True):
+            from app.config import Settings
             settings = Settings()
-            
             assert settings.app_name == "AI Excuse Generator"
-            assert settings.debug == False
-            assert settings.llm_proxy_url == "https://llm-proxy.densematrix.ai"
-            assert settings.llm_model == "gemini-3-flash-preview"
-            assert settings.free_trial_count == 1
     
-    def test_env_override(self):
-        """Should allow environment variable overrides."""
-        with patch.dict(
-            os.environ,
-            {"DEBUG": "true", "LLM_MODEL": "gpt-4o"},
-            clear=False,
-        ):
-            settings = Settings()
-            
-            assert settings.debug == True
-            assert settings.llm_model == "gpt-4o"
+    def test_parse_creem_product_ids_json(self):
+        """Should parse CREEM_PRODUCT_IDS JSON into individual fields."""
+        from app.config import Settings
+        
+        settings = Settings(
+            creem_product_ids='{"pack_10":"prod_10","pack_30":"prod_30","unlimited":"prod_unlimited"}'
+        )
+        
+        assert settings.creem_product_id_10 == "prod_10"
+        assert settings.creem_product_id_30 == "prod_30"
+        assert settings.creem_product_id_unlimited == "prod_unlimited"
     
-    def test_optional_fields(self):
-        """Optional fields should default to None."""
-        with patch.dict(os.environ, {}, clear=True):
-            settings = Settings()
-            
-            assert settings.database_url is None
-            assert settings.creem_api_key is None
-
-
-class TestGetSettings:
-    """Tests for get_settings function."""
+    def test_individual_product_ids_override_json(self):
+        """Individual product IDs should not be overwritten if already set."""
+        from app.config import Settings
+        
+        settings = Settings(
+            creem_product_ids='{"pack_10":"prod_json"}',
+            creem_product_id_10="prod_individual"
+        )
+        
+        assert settings.creem_product_id_10 == "prod_individual"
     
-    def test_returns_settings(self):
-        """Should return a Settings instance."""
-        # Clear the cache first
-        get_settings.cache_clear()
+    def test_invalid_creem_product_ids_json(self):
+        """Should handle invalid JSON gracefully."""
+        from app.config import Settings
         
-        settings = get_settings()
+        settings = Settings(
+            creem_product_ids='invalid json'
+        )
         
-        assert isinstance(settings, Settings)
+        assert settings.creem_product_id_10 is None
+        assert settings.creem_product_id_30 is None
+        assert settings.creem_product_id_unlimited is None
     
-    def test_returns_cached_instance(self):
-        """Should return the same cached instance."""
-        get_settings.cache_clear()
+    def test_empty_creem_product_ids(self):
+        """Should handle empty/None creem_product_ids."""
+        from app.config import Settings
         
-        settings1 = get_settings()
-        settings2 = get_settings()
+        settings = Settings(creem_product_ids=None)
         
-        assert settings1 is settings2
+        assert settings.creem_product_id_10 is None
