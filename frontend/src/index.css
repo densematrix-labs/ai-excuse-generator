@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Smooth transitions for language switches */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Better CJK rendering */
+:lang(zh), :lang(ja), :lang(ko) {
+  font-family: 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', Inter, sans-serif;
+}

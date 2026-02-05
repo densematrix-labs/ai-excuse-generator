@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "AI 借口生成器",
+    "subtitle": "任何场景的完美借口",
+    "tagline": "不想上班？不想聚会？让 AI 帮你想个完美的借口！"
+  },
+  "scenarios": {
+    "title": "你需要什么借口？",
+    "skip_work": "请假/翘班",
+    "avoid_party": "躲避聚会",
+    "late_arrival": "迟到解释",
+    "forgot_task": "忘记任务",
+    "cancel_plans": "取消约定",
+    "miss_meeting": "错过会议",
+    "custom": "自定义"
+  },
+  "styles": {
+    "title": "借口风格",
+    "sincere": "真诚感人",
+    "professional": "专业得体",
+    "creative": "创意独特",
+    "dramatic": "夸张戏剧",
+    "absurd": "荒诞搞笑"
+  },
+  "form": {
+    "targetPerson": "对谁说？",
+    "targetPlaceholder": "例如：老板、朋友、妈妈",
+    "customScenario": "描述你的情况",
+    "customPlaceholder": "你需要什么借口？",
+    "urgency": "紧急程度",
+    "generate": "生成借口",
+    "generating": "正在为你创造完美借口..."
+  },
+  "result": {
+    "title": "你的完美借口",
+    "copy": "复制",
+    "copied": "已复制！",
+    "tryAnother": "换一个",
+    "freeTrialUsed": "已使用免费试用"
+  },
+  "tokens": {
+    "remaining": "剩余次数",
+    "freeTrialAvailable": "1 次免费试用",
+    "buyMore": "购买更多"
+  },
+  "pricing": {
+    "title": "获取更多次数",
+    "subtitle": "永远不缺完美借口",
+    "starter": {
+      "name": "入门包",
+      "description": "3 次借口生成",
+      "price": "$2.99"
+    },
+    "regular": {
+      "name": "常规包",
+      "description": "10 次借口生成",
+      "popular": "最受欢迎",
+      "price": "$7.99"
+    },
+    "pro": {
+      "name": "专业包",
+      "description": "30 次借口生成",
+      "price": "$19.99"
+    },
+    "buy": "立即购买"
+  },
+  "payment": {
+    "success": {
+      "title": "支付成功！",
+      "subtitle": "次数已添加到你的账户",
+      "tokensAdded": "次已添加",
+      "backToGenerator": "返回生成器"
+    }
+  },
+  "errors": {
+    "noTokens": "次数已用完，请购买更多以继续使用。",
+    "generation": "生成借口失败，请重试。",
+    "network": "网络错误，请检查你的连接。"
+  },
+  "footer": {
+    "poweredBy": "由 AI 驱动",
+    "disclaimer": "生成的借口仅供娱乐使用。"
+  },
+  "language": {
+    "select": "语言"
+  }
+}

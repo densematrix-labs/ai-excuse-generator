@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "AI 言い訳ジェネレーター",
+    "subtitle": "あらゆる状況に完璧な言い訳を",
+    "tagline": "仕事に行きたくない？パーティーを避けたい？AIが完璧な言い訳を作ります！"
+  },
+  "scenarios": {
+    "title": "何の言い訳が必要ですか？",
+    "skip_work": "仕事を休む",
+    "avoid_party": "パーティーを断る",
+    "late_arrival": "遅刻の説明",
+    "forgot_task": "タスクを忘れた",
+    "cancel_plans": "予定をキャンセル",
+    "miss_meeting": "会議に欠席",
+    "custom": "カスタム"
+  },
+  "styles": {
+    "title": "言い訳のスタイル",
+    "sincere": "誠実",
+    "professional": "プロフェッショナル",
+    "creative": "クリエイティブ",
+    "dramatic": "ドラマチック",
+    "absurd": "荒唐無稽"
+  },
+  "form": {
+    "targetPerson": "誰に伝えますか？",
+    "targetPlaceholder": "例：上司、友人、母",
+    "customScenario": "状況を説明してください",
+    "customPlaceholder": "何の言い訳が必要ですか？",
+    "urgency": "緊急度",
+    "generate": "言い訳を生成",
+    "generating": "完璧な言い訳を作成中..."
+  },
+  "result": {
+    "title": "あなたの完璧な言い訳",
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "tryAnother": "別のを試す",
+    "freeTrialUsed": "無料トライアル使用済み"
+  },
+  "tokens": {
+    "remaining": "残り回数",
+    "freeTrialAvailable": "1回無料トライアル",
+    "buyMore": "追加購入"
+  },
+  "pricing": {
+    "title": "もっと言い訳を入手",
+    "subtitle": "完璧な言い訳が尽きることはありません",
+    "starter": {
+      "name": "スターターパック",
+      "description": "言い訳生成3回分",
+      "price": "$2.99"
+    },
+    "regular": {
+      "name": "レギュラーパック",
+      "description": "言い訳生成10回分",
+      "popular": "人気No.1",
+      "price": "$7.99"
+    },
+    "pro": {
+      "name": "プロパック",
+      "description": "言い訳生成30回分",
+      "price": "$19.99"
+    },
+    "buy": "購入する"
+  },
+  "payment": {
+    "success": {
+      "title": "支払い完了！",
+      "subtitle": "トークンが追加されました",
+      "tokensAdded": "回分追加",
+      "backToGenerator": "ジェネレーターに戻る"
+    }
+  },
+  "errors": {
+    "noTokens": "トークンがありません。続けるには追加購入してください。",
+    "generation": "言い訳の生成に失敗しました。もう一度お試しください。",
+    "network": "ネットワークエラーです。接続を確認してください。"
+  },
+  "footer": {
+    "poweredBy": "AIで動作",
+    "disclaimer": "生成された言い訳は娯楽目的のみです。"
+  },
+  "language": {
+    "select": "言語"
+  }
+}

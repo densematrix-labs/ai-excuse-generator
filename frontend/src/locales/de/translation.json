@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "AI Ausreden-Generator",
+    "subtitle": "Perfekte Ausreden für jede Situation",
+    "tagline": "Keine Lust auf Arbeit? Party vermeiden? Lass AI die perfekte Ausrede erstellen!"
+  },
+  "scenarios": {
+    "title": "Wofür brauchst du eine Ausrede?",
+    "skip_work": "Arbeit schwänzen",
+    "avoid_party": "Party vermeiden",
+    "late_arrival": "Verspätung erklären",
+    "forgot_task": "Aufgabe vergessen",
+    "cancel_plans": "Pläne absagen",
+    "miss_meeting": "Meeting verpassen",
+    "custom": "Eigene"
+  },
+  "styles": {
+    "title": "Ausreden-Stil",
+    "sincere": "Aufrichtig",
+    "professional": "Professionell",
+    "creative": "Kreativ",
+    "dramatic": "Dramatisch",
+    "absurd": "Absurd"
+  },
+  "form": {
+    "targetPerson": "Wem erzählst du es?",
+    "targetPlaceholder": "z.B. Chef, Freund, Mutter",
+    "customScenario": "Beschreibe deine Situation",
+    "customPlaceholder": "Wofür brauchst du eine Ausrede?",
+    "urgency": "Dringlichkeit",
+    "generate": "Ausrede generieren",
+    "generating": "Erstelle deine perfekte Ausrede..."
+  },
+  "result": {
+    "title": "Deine perfekte Ausrede",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "tryAnother": "Nochmal versuchen",
+    "freeTrialUsed": "Kostenlose Testversion verwendet"
+  },
+  "tokens": {
+    "remaining": "Verbleibend",
+    "freeTrialAvailable": "1 kostenloser Test",
+    "buyMore": "Mehr kaufen"
+  },
+  "pricing": {
+    "title": "Mehr Ausreden holen",
+    "subtitle": "Nie wieder ohne perfekte Ausrede",
+    "starter": {
+      "name": "Starter-Paket",
+      "description": "3 Ausreden-Generierungen",
+      "price": "2,99 $"
+    },
+    "regular": {
+      "name": "Standard-Paket",
+      "description": "10 Ausreden-Generierungen",
+      "popular": "Beliebteste",
+      "price": "7,99 $"
+    },
+    "pro": {
+      "name": "Pro-Paket",
+      "description": "30 Ausreden-Generierungen",
+      "price": "19,99 $"
+    },
+    "buy": "Jetzt kaufen"
+  },
+  "payment": {
+    "success": {
+      "title": "Zahlung erfolgreich!",
+      "subtitle": "Deine Tokens wurden hinzugefügt",
+      "tokensAdded": "Tokens hinzugefügt",
+      "backToGenerator": "Zurück zum Generator"
+    }
+  },
+  "errors": {
+    "noTokens": "Keine Tokens mehr. Bitte kaufe mehr, um fortzufahren.",
+    "generation": "Ausrede konnte nicht generiert werden. Bitte versuche es erneut.",
+    "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung."
+  },
+  "footer": {
+    "poweredBy": "Powered by AI",
+    "disclaimer": "Generierte Ausreden dienen nur der Unterhaltung."
+  },
+  "language": {
+    "select": "Sprache"
+  }
+}

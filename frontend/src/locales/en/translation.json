@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "AI Excuse Generator",
+    "subtitle": "Perfect excuses for any situation",
+    "tagline": "Don't want to work? Skip that party? Let AI craft the perfect excuse!"
+  },
+  "scenarios": {
+    "title": "What do you need an excuse for?",
+    "skip_work": "Skip Work",
+    "avoid_party": "Avoid Party",
+    "late_arrival": "Late Arrival",
+    "forgot_task": "Forgot Task",
+    "cancel_plans": "Cancel Plans",
+    "miss_meeting": "Miss Meeting",
+    "custom": "Custom"
+  },
+  "styles": {
+    "title": "Excuse Style",
+    "sincere": "Sincere",
+    "professional": "Professional",
+    "creative": "Creative",
+    "dramatic": "Dramatic",
+    "absurd": "Absurd"
+  },
+  "form": {
+    "targetPerson": "Who are you telling?",
+    "targetPlaceholder": "e.g., Boss, Friend, Mom",
+    "customScenario": "Describe your situation",
+    "customPlaceholder": "What do you need an excuse for?",
+    "urgency": "Urgency Level",
+    "generate": "Generate Excuse",
+    "generating": "Creating your perfect excuse..."
+  },
+  "result": {
+    "title": "Your Perfect Excuse",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "tryAnother": "Try Another",
+    "freeTrialUsed": "Free trial used"
+  },
+  "tokens": {
+    "remaining": "Remaining",
+    "freeTrialAvailable": "1 Free Trial",
+    "buyMore": "Get More"
+  },
+  "pricing": {
+    "title": "Get More Excuses",
+    "subtitle": "Never run out of perfect excuses",
+    "starter": {
+      "name": "Starter Pack",
+      "description": "3 excuse generations",
+      "price": "$2.99"
+    },
+    "regular": {
+      "name": "Regular Pack",
+      "description": "10 excuse generations",
+      "popular": "Most Popular",
+      "price": "$7.99"
+    },
+    "pro": {
+      "name": "Pro Pack",
+      "description": "30 excuse generations",
+      "price": "$19.99"
+    },
+    "buy": "Buy Now"
+  },
+  "payment": {
+    "success": {
+      "title": "Payment Successful!",
+      "subtitle": "Your tokens have been added",
+      "tokensAdded": "tokens added",
+      "backToGenerator": "Back to Generator"
+    }
+  },
+  "errors": {
+    "noTokens": "No tokens left. Please purchase more to continue.",
+    "generation": "Failed to generate excuse. Please try again.",
+    "network": "Network error. Please check your connection."
+  },
+  "footer": {
+    "poweredBy": "Powered by AI",
+    "disclaimer": "Excuses generated are for entertainment purposes only."
+  },
+  "language": {
+    "select": "Language"
+  }
+}

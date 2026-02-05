@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "Générateur d'Excuses IA",
+    "subtitle": "Des excuses parfaites pour toute situation",
+    "tagline": "Pas envie de travailler ? Éviter une fête ? Laissez l'IA créer l'excuse parfaite !"
+  },
+  "scenarios": {
+    "title": "Pour quoi avez-vous besoin d'une excuse ?",
+    "skip_work": "Sécher le travail",
+    "avoid_party": "Éviter une fête",
+    "late_arrival": "Expliquer un retard",
+    "forgot_task": "Tâche oubliée",
+    "cancel_plans": "Annuler des plans",
+    "miss_meeting": "Manquer une réunion",
+    "custom": "Personnalisé"
+  },
+  "styles": {
+    "title": "Style d'excuse",
+    "sincere": "Sincère",
+    "professional": "Professionnel",
+    "creative": "Créatif",
+    "dramatic": "Dramatique",
+    "absurd": "Absurde"
+  },
+  "form": {
+    "targetPerson": "À qui le dites-vous ?",
+    "targetPlaceholder": "ex: Patron, Ami, Maman",
+    "customScenario": "Décrivez votre situation",
+    "customPlaceholder": "Pour quoi avez-vous besoin d'une excuse ?",
+    "urgency": "Niveau d'urgence",
+    "generate": "Générer une excuse",
+    "generating": "Création de votre excuse parfaite..."
+  },
+  "result": {
+    "title": "Votre excuse parfaite",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "tryAnother": "Essayer une autre",
+    "freeTrialUsed": "Essai gratuit utilisé"
+  },
+  "tokens": {
+    "remaining": "Restant",
+    "freeTrialAvailable": "1 essai gratuit",
+    "buyMore": "En obtenir plus"
+  },
+  "pricing": {
+    "title": "Obtenez plus d'excuses",
+    "subtitle": "Ne manquez jamais d'excuses parfaites",
+    "starter": {
+      "name": "Pack Débutant",
+      "description": "3 générations d'excuses",
+      "price": "2,99 $"
+    },
+    "regular": {
+      "name": "Pack Standard",
+      "description": "10 générations d'excuses",
+      "popular": "Le plus populaire",
+      "price": "7,99 $"
+    },
+    "pro": {
+      "name": "Pack Pro",
+      "description": "30 générations d'excuses",
+      "price": "19,99 $"
+    },
+    "buy": "Acheter"
+  },
+  "payment": {
+    "success": {
+      "title": "Paiement réussi !",
+      "subtitle": "Vos jetons ont été ajoutés",
+      "tokensAdded": "jetons ajoutés",
+      "backToGenerator": "Retour au générateur"
+    }
+  },
+  "errors": {
+    "noTokens": "Plus de jetons. Veuillez en acheter pour continuer.",
+    "generation": "Échec de la génération. Veuillez réessayer.",
+    "network": "Erreur réseau. Vérifiez votre connexion."
+  },
+  "footer": {
+    "poweredBy": "Propulsé par l'IA",
+    "disclaimer": "Les excuses générées sont uniquement à des fins de divertissement."
+  },
+  "language": {
+    "select": "Langue"
+  }
+}

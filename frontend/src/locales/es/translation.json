@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "Generador de Excusas IA",
+    "subtitle": "Excusas perfectas para cualquier situación",
+    "tagline": "¿No quieres trabajar? ¿Evitar una fiesta? ¡Deja que la IA cree la excusa perfecta!"
+  },
+  "scenarios": {
+    "title": "¿Para qué necesitas una excusa?",
+    "skip_work": "Faltar al trabajo",
+    "avoid_party": "Evitar fiesta",
+    "late_arrival": "Llegar tarde",
+    "forgot_task": "Olvidé tarea",
+    "cancel_plans": "Cancelar planes",
+    "miss_meeting": "Perder reunión",
+    "custom": "Personalizado"
+  },
+  "styles": {
+    "title": "Estilo de excusa",
+    "sincere": "Sincero",
+    "professional": "Profesional",
+    "creative": "Creativo",
+    "dramatic": "Dramático",
+    "absurd": "Absurdo"
+  },
+  "form": {
+    "targetPerson": "¿A quién se lo dices?",
+    "targetPlaceholder": "ej: Jefe, Amigo, Mamá",
+    "customScenario": "Describe tu situación",
+    "customPlaceholder": "¿Para qué necesitas una excusa?",
+    "urgency": "Nivel de urgencia",
+    "generate": "Generar excusa",
+    "generating": "Creando tu excusa perfecta..."
+  },
+  "result": {
+    "title": "Tu excusa perfecta",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "tryAnother": "Probar otra",
+    "freeTrialUsed": "Prueba gratuita usada"
+  },
+  "tokens": {
+    "remaining": "Restantes",
+    "freeTrialAvailable": "1 prueba gratis",
+    "buyMore": "Obtener más"
+  },
+  "pricing": {
+    "title": "Obtén más excusas",
+    "subtitle": "Nunca te quedes sin excusas perfectas",
+    "starter": {
+      "name": "Paquete Inicial",
+      "description": "3 generaciones de excusas",
+      "price": "$2.99"
+    },
+    "regular": {
+      "name": "Paquete Regular",
+      "description": "10 generaciones de excusas",
+      "popular": "Más popular",
+      "price": "$7.99"
+    },
+    "pro": {
+      "name": "Paquete Pro",
+      "description": "30 generaciones de excusas",
+      "price": "$19.99"
+    },
+    "buy": "Comprar ahora"
+  },
+  "payment": {
+    "success": {
+      "title": "¡Pago exitoso!",
+      "subtitle": "Tus tokens han sido añadidos",
+      "tokensAdded": "tokens añadidos",
+      "backToGenerator": "Volver al generador"
+    }
+  },
+  "errors": {
+    "noTokens": "Sin tokens. Por favor compra más para continuar.",
+    "generation": "Error al generar excusa. Por favor intenta de nuevo.",
+    "network": "Error de red. Verifica tu conexión."
+  },
+  "footer": {
+    "poweredBy": "Impulsado por IA",
+    "disclaimer": "Las excusas generadas son solo para entretenimiento."
+  },
+  "language": {
+    "select": "Idioma"
+  }
+}
