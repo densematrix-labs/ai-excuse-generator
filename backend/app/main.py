@@ -2,9 +2,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.config import get_settings
 from app.api import excuse_router, token_router, payment_router
+from app.core.metrics import record_generation, record_token_consumed, generation_timer
 
 
 @asynccontextmanager
@@ -37,6 +39,9 @@ app.add_middleware(
 app.include_router(excuse_router.router, prefix="/api", tags=["excuses"])
 app.include_router(token_router.router, prefix="/api", tags=["tokens"])
 app.include_router(payment_router.router, prefix="/api", tags=["payment"])
+
+# Prometheus metrics
+Instrumentator().instrument(app).expose(app, endpoint="/api/metrics")
 
 
 @app.get("/health")
